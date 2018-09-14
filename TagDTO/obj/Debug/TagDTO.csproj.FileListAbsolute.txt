@@ -1,0 +1,5 @@
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\bin\Debug\TagDTO.dll
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\bin\Debug\TagDTO.pdb
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\obj\Debug\TagDTO.csprojResolveAssemblyReference.cache
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\obj\Debug\TagDTO.dll
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\obj\Debug\TagDTO.pdb

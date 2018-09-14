@@ -1,0 +1,14 @@
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\TcpServer.exe.config
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\TcpServer.exe
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\TcpServer.pdb
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\Packet.dll
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\S7.Net.dll
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\WatsonTcp.dll
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\Packet.pdb
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\WatsonTcp.pdb
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.MainFm.resources
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.csproj.GenerateResource.Cache
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.exe.licenses
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.exe
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.pdb
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.csprojResolveAssemblyReference.cache
