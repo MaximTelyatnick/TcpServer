@@ -15,7 +15,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 
-namespace TcpServer
+namespace TVM_WMS.SERVER
 {
     public partial class MainFm : DevExpress.XtraEditors.XtraForm
     {
@@ -28,7 +28,7 @@ namespace TcpServer
         public string serverIp;
         public List<string> clients;
         public string ipPort;
-        public Utils.Command currentServerCommand;
+        public Utils.TypeCommand currentServerCommand;
 
 
         public MainFm()
@@ -70,114 +70,114 @@ namespace TcpServer
             if (data != null && data.Length > 0)
             {  
                 receivedObject = ByteArrayToObject(data);
-                messageEdit.MaskBox.AppendText(DateTime.Now + " Client: " + ipPort + ", command: " + ((PacketDTO)receivedObject).command + Environment.NewLine);
+                messageEdit.MaskBox.AppendText(DateTime.Now + " Client: " + ipPort + ", command: " + ((PacketDTO)receivedObject).typeCommand + Environment.NewLine);
             }
 
-            switch (((PacketDTO)receivedObject).command)
+            switch (((PacketDTO)receivedObject).typeCommand)
             {
-                case Utils.Command.Get_server_plc_db1:
-                    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
-                    plc.Open();
+                //case Utils.Command.Get_server_plc_db1:
+                //    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
+                //    plc.Open();
 
-                    str = string.Empty;
-                    for (int i = 0; i < 254; i++)
-                        str += "\0";
+                //    str = string.Empty;
+                //    for (int i = 0; i < 254; i++)
+                //        str += "\0";
 
-                    tagDto = new TagDTO();
+                //    tagDto = new TagDTO();
 
-                    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB1.DBD0.0")).ConvertToDouble(), 2);
-                    tagDto.OldWeight = ((uint)plc.Read("DB1.DBD4.0")).ConvertToDouble();
-                    tagDto.CellNumber = ((ushort)plc.Read("DB1.DBW8.0")).ConvertToShort();
-                    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB1.DBW10.0")).ConvertToShort();
-                    tagDto.PLCSetOpen = ((ushort)plc.Read("DB1.DBW12.0")).ConvertToShort();
-                    tagDto.PLCSetClose = ((ushort)plc.Read("DB1.DBW14.0")).ConvertToShort();
-                    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB1.DBW16.0")).ConvertToShort();
-                    tagDto.Error = (bool)plc.Read("DB1.DBX18.0");
-                    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
-                    tagDto.Reset = (bool)plc.Read("DB1.DBX276.0");
+                //    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB1.DBD0.0")).ConvertToDouble(), 2);
+                //    tagDto.OldWeight = ((uint)plc.Read("DB1.DBD4.0")).ConvertToDouble();
+                //    tagDto.CellNumber = ((ushort)plc.Read("DB1.DBW8.0")).ConvertToShort();
+                //    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB1.DBW10.0")).ConvertToShort();
+                //    tagDto.PLCSetOpen = ((ushort)plc.Read("DB1.DBW12.0")).ConvertToShort();
+                //    tagDto.PLCSetClose = ((ushort)plc.Read("DB1.DBW14.0")).ConvertToShort();
+                //    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB1.DBW16.0")).ConvertToShort();
+                //    tagDto.Error = (bool)plc.Read("DB1.DBX18.0");
+                //    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
+                //    tagDto.Reset = (bool)plc.Read("DB1.DBX276.0");
 
-                    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db1, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
-                    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
+                //    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db1, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
+                //    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
 
-                    break;
-                case Utils.Command.Get_server_plc_db27:
-                    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
-                    plc.Open();
+                //    break;
+                //case Utils.Command.Get_server_plc_db27:
+                //    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
+                //    plc.Open();
 
-                    str = string.Empty;
-                    for (int i = 0; i < 254; i++)
-                        str += "\0";
+                //    str = string.Empty;
+                //    for (int i = 0; i < 254; i++)
+                //        str += "\0";
 
-                    tagDto = new TagDTO();
+                //    tagDto = new TagDTO();
 
-                    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB27.DBD0.0")).ConvertToDouble(), 2);
-                    tagDto.OldWeight = ((uint)plc.Read("DB27.DBD4.0")).ConvertToDouble();
-                    tagDto.CellNumber = ((ushort)plc.Read("DB27.DBW8.0")).ConvertToShort();
-                    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB27.DBW10.0")).ConvertToShort();
-                    tagDto.PLCSetOpen = ((ushort)plc.Read("DB27.DBW12.0")).ConvertToShort();
-                    tagDto.PLCSetClose = ((ushort)plc.Read("DB27.DBW14.0")).ConvertToShort();
-                    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB27.DBW16.0")).ConvertToShort();
-                    tagDto.Error = (bool)plc.Read("DB27.DBX18.0");
-                    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
-                    tagDto.Reset = (bool)plc.Read("DB27.DBX276.0");
+                //    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB27.DBD0.0")).ConvertToDouble(), 2);
+                //    tagDto.OldWeight = ((uint)plc.Read("DB27.DBD4.0")).ConvertToDouble();
+                //    tagDto.CellNumber = ((ushort)plc.Read("DB27.DBW8.0")).ConvertToShort();
+                //    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB27.DBW10.0")).ConvertToShort();
+                //    tagDto.PLCSetOpen = ((ushort)plc.Read("DB27.DBW12.0")).ConvertToShort();
+                //    tagDto.PLCSetClose = ((ushort)plc.Read("DB27.DBW14.0")).ConvertToShort();
+                //    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB27.DBW16.0")).ConvertToShort();
+                //    tagDto.Error = (bool)plc.Read("DB27.DBX18.0");
+                //    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
+                //    tagDto.Reset = (bool)plc.Read("DB27.DBX276.0");
 
-                    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db27, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
-                    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
+                //    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db27, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
+                //    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
 
-                    break;
-                case Utils.Command.Get_server_plc_db28:
-                    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
-                    plc.Open();
+                //    break;
+                //case Utils.Command.Get_server_plc_db28:
+                //    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
+                //    plc.Open();
 
-                    str = string.Empty;
-                    for (int i = 0; i < 254; i++)
-                        str += "\0";
+                //    str = string.Empty;
+                //    for (int i = 0; i < 254; i++)
+                //        str += "\0";
 
-                    tagDto = new TagDTO();
+                //    tagDto = new TagDTO();
 
-                    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB28.DBD0.0")).ConvertToDouble(), 2);
-                    tagDto.OldWeight = ((uint)plc.Read("DB28.DBD4.0")).ConvertToDouble();
-                    tagDto.CellNumber = ((ushort)plc.Read("DB28.DBW8.0")).ConvertToShort();
-                    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB28.DBW10.0")).ConvertToShort();
-                    tagDto.PLCSetOpen = ((ushort)plc.Read("DB28.DBW12.0")).ConvertToShort();
-                    tagDto.PLCSetClose = ((ushort)plc.Read("DB28.DBW14.0")).ConvertToShort();
-                    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB28.DBW16.0")).ConvertToShort();
-                    tagDto.Error = (bool)plc.Read("DB28.DBX18.0");
-                    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
-                    tagDto.Reset = (bool)plc.Read("DB28.DBX276.0");
+                //    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB28.DBD0.0")).ConvertToDouble(), 2);
+                //    tagDto.OldWeight = ((uint)plc.Read("DB28.DBD4.0")).ConvertToDouble();
+                //    tagDto.CellNumber = ((ushort)plc.Read("DB28.DBW8.0")).ConvertToShort();
+                //    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB28.DBW10.0")).ConvertToShort();
+                //    tagDto.PLCSetOpen = ((ushort)plc.Read("DB28.DBW12.0")).ConvertToShort();
+                //    tagDto.PLCSetClose = ((ushort)plc.Read("DB28.DBW14.0")).ConvertToShort();
+                //    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB28.DBW16.0")).ConvertToShort();
+                //    tagDto.Error = (bool)plc.Read("DB28.DBX18.0");
+                //    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
+                //    tagDto.Reset = (bool)plc.Read("DB28.DBX276.0");
 
-                    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db28, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
-                    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
+                //    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db28, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
+                //    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
 
-                    break;
-                case Utils.Command.Get_server_plc_db29:
-                    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
-                    plc.Open();
+                //    break;
+                //case Utils.Command.Get_server_plc_db29:
+                //    plc = new Plc(CpuType.S71200, "192.168.1.54", 0, 1);
+                //    plc.Open();
 
-                    str = string.Empty;
-                    for (int i = 0; i < 254; i++)
-                        str += "\0";
+                //    str = string.Empty;
+                //    for (int i = 0; i < 254; i++)
+                //        str += "\0";
 
-                    tagDto = new TagDTO();
+                //    tagDto = new TagDTO();
 
-                    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB29.DBD0.0")).ConvertToDouble(), 2);
-                    tagDto.OldWeight = ((uint)plc.Read("DB29.DBD4.0")).ConvertToDouble();
-                    tagDto.CellNumber = ((ushort)plc.Read("DB29.DBW8.0")).ConvertToShort();
-                    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB29.DBW10.0")).ConvertToShort();
-                    tagDto.PLCSetOpen = ((ushort)plc.Read("DB29.DBW12.0")).ConvertToShort();
-                    tagDto.PLCSetClose = ((ushort)plc.Read("DB29.DBW14.0")).ConvertToShort();
-                    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB29.DBW16.0")).ConvertToShort();
-                    tagDto.Error = (bool)plc.Read("DB29.DBX18.0");
-                    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
-                    tagDto.Reset = (bool)plc.Read("DB29.DBX276.0");
+                //    tagDto.CurrentWeight = Math.Round(((uint)plc.Read("DB29.DBD0.0")).ConvertToDouble(), 2);
+                //    tagDto.OldWeight = ((uint)plc.Read("DB29.DBD4.0")).ConvertToDouble();
+                //    tagDto.CellNumber = ((ushort)plc.Read("DB29.DBW8.0")).ConvertToShort();
+                //    tagDto.PLCLoadStatus = ((ushort)plc.Read("DB29.DBW10.0")).ConvertToShort();
+                //    tagDto.PLCSetOpen = ((ushort)plc.Read("DB29.DBW12.0")).ConvertToShort();
+                //    tagDto.PLCSetClose = ((ushort)plc.Read("DB29.DBW14.0")).ConvertToShort();
+                //    tagDto.PLCDropoffWind = ((ushort)plc.Read("DB29.DBW16.0")).ConvertToShort();
+                //    tagDto.Error = (bool)plc.Read("DB29.DBX18.0");
+                //    tagDto.ErrorList = S7.Net.Types.String.FromByteArray(ReadMultipleBytes(plc, 9, 1, 22));
+                //    tagDto.Reset = (bool)plc.Read("DB29.DBX276.0");
 
-                    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db29, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
-                    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
+                //    currentPacket = new PacketDTO(Utils.Command.Get_server_plc_db29, Convert.ToString(DateTime.Now), ObjectToByteArray((Object)tagDto));
+                //    server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
 
-                    break;
+                    //break;
                 
                 default:
-                    currentPacket = new PacketDTO(Utils.Command.Not_correct_command, "Не поддерживаемая команда", null);
+                    //currentPacket = new PacketDTO(Utils.Command.Not_correct_command, "Не поддерживаемая команда", null);
                     server.Send(ipPort, ObjectToByteArray((Object)currentPacket));
                     break;
             }
@@ -256,47 +256,47 @@ namespace TcpServer
         {
             switch (currentServerCommand)
             {
-                case Utils.Command.Get_server_plc_db1:
-                    //runForever = false;
-                    break;
-                case Utils.Command.Get_server_plc_db27:
-                    //Console.Clear();
-                    break;
-                case Utils.Command.Get_server_plc_db28:
-                    //clients = server.ListClients();
-                    //if (clients != null && clients.Count > 0)
-                    //{
-                    //    Console.WriteLine("Clients");
-                    //    foreach (string curr in clients) Console.WriteLine("  " + curr);
-                    //}
-                    //else Console.WriteLine("None");
-                    break;
-                case Utils.Command.Get_server_plc_db29:
-                    //Console.Write("IP:Port: ");
-                    //ipPort = Console.ReadLine();
+                //case Utils.Command.Get_server_plc_db1:
+                //    //runForever = false;
+                //    break;
+                //case Utils.Command.Get_server_plc_db27:
+                //    //Console.Clear();
+                //    break;
+                //case Utils.Command.Get_server_plc_db28:
+                //    //clients = server.ListClients();
+                //    //if (clients != null && clients.Count > 0)
+                //    //{
+                //    //    Console.WriteLine("Clients");
+                //    //    foreach (string curr in clients) Console.WriteLine("  " + curr);
+                //    //}
+                //    //else Console.WriteLine("None");
+                //    break;
+                //case Utils.Command.Get_server_plc_db29:
+                //    //Console.Write("IP:Port: ");
+                //    //ipPort = Console.ReadLine();
 
 
-                    //BinaryFormatter formatter;
+                //    //BinaryFormatter formatter;
 
-                    ////var stream = new MemoryStream();
+                //    ////var stream = new MemoryStream();
 
-                    ////formatter.Serialize(stream, tm);
+                //    ////formatter.Serialize(stream, tm);
 
-                    //TagDTO tagDto = new TagDTO();
-                    //tagDto.CurrentWeight = 10;
-                    //tagDto.OldWeight = 10;
-
-
-
-                    ////if (String.IsNullOrEmpty(userInput)) break;
+                //    //TagDTO tagDto = new TagDTO();
+                //    //tagDto.CurrentWeight = 10;
+                //    //tagDto.OldWeight = 10;
 
 
 
-                    ////server.Send(ipPort, Encoding.UTF8.GetBytes(userInput));
+                //    ////if (String.IsNullOrEmpty(userInput)) break;
 
-                    //server.Send(ipPort, ObjectToByteArray(tagDto));
 
-                    break;
+
+                //    ////server.Send(ipPort, Encoding.UTF8.GetBytes(userInput));
+
+                //    //server.Send(ipPort, ObjectToByteArray(tagDto));
+
+                //    break;
             }
         }
 

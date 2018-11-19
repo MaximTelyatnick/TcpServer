@@ -12,3 +12,4 @@ d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debu
 d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.exe
 d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.pdb
 d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\obj\Debug\TcpServer.csprojResolveAssemblyReference.cache
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TcpServer\bin\Debug\TVM_VMS.SERVER.exe.config

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpServer", "TcpServer\TcpServer.csproj", "{A689D383-194D-472A-BFDF-872EA8EE5821}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVM_WMS.SERVER", "TcpServer\TVM_WMS.SERVER.csproj", "{A689D383-194D-472A-BFDF-872EA8EE5821}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packet", "TagDTO\Packet.csproj", "{3EF5FE6E-9145-4A25-B278-A08FE8473D42}"
 EndProject

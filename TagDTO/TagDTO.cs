@@ -20,6 +20,9 @@ namespace Packet
         public bool Error { get; set; }
         public string ErrorList { get; set; }
         public bool Reset { get; set; }
+        public bool WatchDogPLC { get; set; }
+        public bool WatchDogPC { get; set; }
+
         // Метод, вызываемый при сериализации
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -33,6 +36,9 @@ namespace Packet
             info.AddValue("Error", this.Error);
             info.AddValue("ErrorList", this.ErrorList);
             info.AddValue("Reset", this.Reset);
+            info.AddValue("WatchDogPLC", this.WatchDogPLC);
+            info.AddValue("WatchDogPC", this.WatchDogPC);
+
         }
         public TagDTO()
         {
@@ -52,6 +58,8 @@ namespace Packet
             this.Error = (bool)info.GetValue("Error", typeof(bool));
             this.ErrorList = (string)info.GetValue("ErrorList", typeof(string));
             this.Reset = (bool)info.GetValue("Reset", typeof(bool));
+            this.WatchDogPLC = (bool)info.GetValue("WatchDogPLC", typeof(bool));
+            this.WatchDogPC = (bool)info.GetValue("WatchDogPC", typeof(bool));
         }
     }
 }

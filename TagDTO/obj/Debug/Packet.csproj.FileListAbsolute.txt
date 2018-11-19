@@ -2,3 +2,4 @@ d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\bin\Debug\P
 d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\bin\Debug\Packet.pdb
 d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\obj\Debug\Packet.dll
 d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\obj\Debug\Packet.pdb
+d:\teliatnyck\documents\visual studio 2012\Projects\TcpServer\TagDTO\obj\Debug\Packet.csprojResolveAssemblyReference.cache

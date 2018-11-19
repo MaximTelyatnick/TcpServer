@@ -1,4 +1,4 @@
-﻿namespace TcpServer
+﻿namespace TVM_WMS.SERVER
 {
     partial class MainFm
     {

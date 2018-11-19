@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GlobalLocalSettingsSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DbServerName>127.0.0.1</DbServerName>
+  <DbAlias>TVM_LOCAL</DbAlias>
+  <GeneralServerIp>191.168.3.3</GeneralServerIp>
+  <GeneralServerPort>9000</GeneralServerPort>
+  <LogFileCheck>true</LogFileCheck>
+  <LogFilePath>D:\Teliatnyck\Desktop</LogFilePath>
+  <LogSaveDay>1</LogSaveDay>
+  <ReceiptXMLPath>ава</ReceiptXMLPath>
+  <ExpenditureXMLPath>апвапвап</ExpenditureXMLPath>
+  <WatchDogPLCOffset>DBX0.0</WatchDogPLCOffset>
+  <WatchDogPCOffset>DBX0.1</WatchDogPCOffset>
+  <WatchDogDBName>DB30</WatchDogDBName>
+  <WatchDogPLCName>plc1</WatchDogPLCName>
+</GlobalLocalSettingsSource>
